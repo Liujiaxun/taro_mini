@@ -1,0 +1,168 @@
+.addressBox {
+  width: 100%;
+  height: 150px;
+
+  .addressBoxHas {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+
+    .address {
+      display: flex;
+      flex-direction: column;
+      padding: 30px 40px 20px 40px;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      font-size: 24px;
+
+      .i-top {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    .addressIcon {
+      width: 26px;
+      height: 26px;
+    }
+  }
+}
+
+.order_img {
+  width: 100%;
+  height: 8px;
+  margin-bottom: 10px;
+}
+
+.order_box {
+  width: 100%;
+  background: #fff;
+  border-top: 2px solid #e5e5e5;
+  border-bottom: 2px solid #e5e5e5;
+  padding-left: 30px;
+}
+
+.order_list {
+  .item {
+    wdith: 100%;
+    height: 200px;
+    padding-bottom: 20px;
+    display: flex;
+    border-bottom: 2px solid #e5e5e5;;
+    align-items: center;
+    justify-content: flex-start;
+
+    .Img {
+      flex: 0 0 180px;
+
+      .cover {
+        width: 180px;
+        height: 180px;
+      }
+    }
+
+    .Info {
+      flex: 1;
+      height: 100%;
+      overflow: hidden;
+      padding-left: 20px;
+      padding-top: 40px;
+
+      .title {
+        display: flex;
+        width: 100%;
+
+        .name {
+          width: 100%;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+
+          .tx {
+            width: 100%;
+            font-size: 24px;
+          }
+        }
+      }
+
+      .pr {
+        margin-top: 30px;
+        display: flex;
+        font-size: 24px;
+        padding-right: 20px;
+        justify-content: space-between;
+      }
+    }
+  }
+}
+
+.count {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #e5e5e5;
+  font-size: 30px;
+
+  .countColor {
+    color: #ab2b2b;
+  }
+
+  Input {
+    flex: 1;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.silde {
+  border-bottom: 2px solid #e5e5e5;
+  border-top: 2px solid #e5e5e5;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 20px 30px 30px;
+  margin-top: 20px;
+  background-color: #fff;
+  font-size: 24px;
+}
+
+.footer_box {
+  width: 100%;
+  height: 100%;
+  border-top: 2px solid #e5e5e5;
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+
+  .pays {
+    width: 240px;
+    height: 100%;
+    background: #ab2b2b;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .pays-price {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 30px;
+    .color{
+      color:#ab2b2b;
+    }
+  }
+
+}
+

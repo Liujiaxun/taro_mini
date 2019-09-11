@@ -1,0 +1,31 @@
+@import "@styles/theme.scss";
+
+.item {
+  position: relative;
+  overflow: hidden;
+}
+
+.item__wrap {
+  background: #fafafa;
+}
+
+.addressBox{
+  width:100%;
+  background: #fff;
+  margin-bottom: 30px;
+  .content{
+    padding: 50px 36px;
+    border-bottom: 2px solid #e5e5e5;
+    .name{
+      font-size: 32px;
+      white-space: pre;
+      margin-bottom: 10px;
+    }
+    .city{
+      font-size: 30px;
+    }
+  }
+  .tool{
+    padding: 30px
+  }
+}
