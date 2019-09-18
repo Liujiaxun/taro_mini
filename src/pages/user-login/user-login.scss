@@ -108,4 +108,59 @@ page {
   box-shadow: inset 0 5px 30px rgba(0, 0, 0, 0.15);
 }
 
-
+.appLogin{
+  width: 300px;
+  height: 300px;
+  margin: 160px auto;
+  .logo{
+    width: 100%;
+    height: 100%;
+  }
+}
+.inputs{
+  width: 80%;
+  height: 100px;
+  padding: 10px 40px;
+  margin: 40px auto;
+  font-size: 28px;
+  border-radius: 40px;
+  border: 2px solid #e5e5e5;
+  background:rgba(216,216,216,1);
+  border-radius:49px;
+  position: relative;
+  display: flex;
+  input{
+    flex: 1;
+    height: 100%;
+    &.pass{
+      padding-right: 200px;
+    }
+  }
+}
+.loginBtn{
+  width: 80%;
+  height: 88px;
+  margin: 0 auto;
+  text-align: center;
+}
+.ge{
+  display: flex;
+  width: 80%;
+  margin:0 auto;
+  justify-content: center;
+  align-items: center;
+}
+.getCode{
+  flex: 0 0 200px;
+  width: 200px;
+  height: 80px;
+  font-size: 26px;
+  right: 0;
+  top: -1px;
+  margin-left: 20px;
+  background: #ab2b2b;
+  color:#fff;
+}
+button[disabled]{
+  background: #e5e5e5;
+}

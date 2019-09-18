@@ -1,0 +1,27 @@
+.item__wrap{
+  padding:0;
+  background: #e5e5e5;
+}
+
+.help-list{
+  width: 100%;
+  background-color:#fff ;
+  margin-bottom: 40px;
+  .title{
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 32px;
+    padding:0 20px;
+    border-bottom-color: #e5e5e5;
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+  }
+  .content{
+    padding: 20px;
+    font-size: 28px;
+    background-color: #fafafa;
+    color:#666;
+  }
+}

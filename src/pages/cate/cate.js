@@ -24,10 +24,8 @@ class Cate extends Component {
 
   componentDidMount() {
     this.init();
-    this.props.dispatchMenu()
   }
-  async init (){
-    const app = await Taro.getStorage({key: 'app'}).then(res => res.data).catch(err => '');
+   init (){
     this.props.dispathCategory({}).then((res) => {
       this.setState({
         loaded: true,
@@ -84,7 +82,6 @@ class Cate extends Component {
             <View className='cate__list-wrap'>
               <Banner banner={banner} current={current} />
               <List list={list} />
-              {/*<View>下一页</View>*/}
             </View>
           </ScrollView>
         }

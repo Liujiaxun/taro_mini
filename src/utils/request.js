@@ -1,13 +1,21 @@
 import Taro from '@tarojs/taro'
 import {API_USER, API_USER_LOGIN} from '@constants/api'
 import { Apis } from '../config/urls';
-import {app_version, timeSpan, yxcId} from "../config/config";
+import {app_version, timeSpan, yxcId,pageSize} from "../config/config";
+import {getAppStore} from "./func";
 
 const CODE_SUCCESS = '200'
 const CODE_AUTH_EXPIRED = '600'
 
 export function getStorage(key) {
   return Taro.getStorage({key}).then(res => res.data).catch(() => '')
+}
+function json2Form(json) {
+  var str = [];
+  for(var p in json){
+    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(json[p]));
+  }
+  return str.join("&");
 }
 
 function updateStorage(data = {}) {
@@ -92,32 +100,37 @@ export function getAppStorage(key) {
  * @param {*} options
  */
 export async function fetch2(options) {
-  const {url, payload, method = 'GET', showToast = true, autoLogin = true} = options
+  const {url, payload, method = 'GET', showToast = true, autoLogin = true, isPayload } = options
   let token = await getStorage('token')
   let app = await getStorage('app')
   if(!app || !app.api_token){
     app = Taro.getStorageSync('app');
+    app = getAppStore('app');
   }
   if(!token || !token.id){
-    token = Taro.getStorageSync('token') || JSON.parse(window.localStorage.getItem('token'));
+    token = Taro.getStorageSync('token') || getAppStore('token');
   }
   let newData = {...payload}
-  if(url !== Apis.URL_USERAPP_AUTHEN && app && app.api_secret && app.api_token && app.app_id){
+  if(url !== Apis.URL_USERAPP_AUTHEN && url !== Apis.URL_AREA_PROVINCE && url !== Apis.URL_AREA_CITY && url !== Apis.URL_AREA_DISTRICT && app && app.api_secret && app.api_token && app.app_id){
     // newData.id= payload.id ? payload.id : yxcId
     newData.version=app_version
     newData.timespan=timeSpan
     newData.mid=app.user_app_id
     newData.api_token=app.api_token
-    newData.api_sign=app.api_secret
+    // newData.api_sign=app.api_secret
   }
-  if(token && token.id && url !== Apis.URL_USER_LOGIN){
+  if(token && token.id && url !== Apis.URL_USER_LOGIN && url !== Apis.URL_PHONEAUTHONECODE_SEND && url !== 'https://request.hao-a.com/xcx/user/applogin'){
     newData.uid = token.id
   }
   // const header = token ? {'WX-PIN-SESSION': token, 'X-WX-3RD-Session': token} : {}
   const header =  {}
   if (method === 'POST') {
-    header['content-type'] = 'application/json'
+    header['content-type'] =  !isPayload ? 'application/json': 'application/x-www-form-urlencoded'
   }
+  if (method === 'GET' && !newData.pageSize) {
+    newData.pageSize = pageSize
+  }
+
   if(process.env.TARO_ENV === 'h5'){
     // header.mode = 'cors'
   }

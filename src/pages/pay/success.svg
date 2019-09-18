@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>对号</title>
+    <desc>Created with Sketch.</desc>
+    <g id="夜伴(素聊)-app-" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="支付成功---成功状态" transform="translate(-275.000000, -313.000000)">
+            <g id="成功" transform="translate(275.000000, 313.000000)">
+                <g id="对号">
+                    <rect id="矩形" fill="#35FF76" x="0" y="0" width="200" height="200" rx="100"></rect>
+                    <g transform="translate(38.666667, 42.000000)" fill="#FFFFFF" fill-rule="nonzero" id="路径">
+                        <path d="M47.7749909,116 C47.7749909,116 65.6773812,82.3817845 86.2767988,53.2900006 C102.174631,30.845212 122,11.1897693 122,11.1897693 L117.868693,0 C117.868693,0 94.3520313,15.9038693 75.308844,35.4125295 C55.9804874,55.2066133 41.1338587,78.6627164 41.1338587,78.6627164 L11.9376143,52.0503112 L0,64.4145199 L47.7748354,115.99994 L47.7749909,116 Z"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

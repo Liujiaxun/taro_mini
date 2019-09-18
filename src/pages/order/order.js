@@ -7,9 +7,9 @@ import {dispatchAdd} from '@actions/cart'
 import {getWindowHeight} from '@utils/style'
 import './order.scss'
 import '../item/item.scss'
-import {dispathProductInfo, dispathGetAddress, dispathSysSetting, dispathOrderCreate} from '../../actions/yixiaocheng'
+import {dispathProductInfo, dispathGetAddress, dispathSysSetting, dispathOrderCreate, dispathSelectAddress} from '../../actions/yixiaocheng'
 
-@connect(state => state.item, {dispathProductInfo, dispathGetAddress, dispathSysSetting, dispathOrderCreate})
+@connect(state => state.item, {dispathProductInfo, dispathGetAddress, dispathSysSetting, dispathOrderCreate, dispathSelectAddress})
 class Item extends Component {
   config = {
     navigationBarTitleText: '支付确认'
@@ -61,6 +61,7 @@ class Item extends Component {
       payloadProductInfo.products = [{
         product_id: this.product_id, sku_id: "0", num: this.num
       }]
+      payloadProductInfo.promotion_product_id =  "0"
     }
 
     this.props.dispathProductInfo(payloadProductInfo).then(res => {
@@ -77,8 +78,12 @@ class Item extends Component {
   }
 
   orderCreate = () => {
+    const self = this;
     const {address} = this.state;
-    const defaultAddress = address.find(item => item.status === '2') || null;
+    let defaultAddress = address.find(item => item.status === '2') || null;
+    if(this.props.addressIndex !== -1){
+      defaultAddress = address[this.props.addressIndex]
+    }
     let user_address_id;
     const receivetime = new Date();
     let message = this.message && this.message.target ? this.message.target.value : ''
@@ -125,17 +130,30 @@ class Item extends Component {
               Taro.showToast({
                 title: '支付成功',
                 icon: 'success',
-              })
+              });
             },
             fail: err => {
               Taro.showModal({
                 title: '取消支付或者支付失败',
               }).then(res => {
-
+                Taro.navigateTo({
+                  url: '/pages/orders/orders'
+                });
+              })
+            },
+            complete:function(){
+              self.props.dispathSelectAddress({
+                index: -1
               })
             }
           })
       }
+    });
+  }
+
+  goAddress = () => {
+    Taro.navigateTo({
+      url: '/pages/address/address?url=pages/order/order'
     });
   }
 
@@ -148,8 +166,13 @@ class Item extends Component {
     if (!this.state.loaded) {
       return <Loading/>
     }
+    const {addressIndex} = this.props;
     const {address, shop} = this.state;
-    const defaultAddress = address.find(item => item.status === '2') || {};
+
+    let defaultAddress = address.find(item => item.status === '2') || {};
+    if(addressIndex != -1){
+      defaultAddress = address[addressIndex]
+    }
     const height = getWindowHeight(false)
     return (
       <View className='item' style={{backgroundColor: 'rgb(249, 249, 249)'}}>
@@ -158,9 +181,9 @@ class Item extends Component {
           className='item__wrap'
           style={{height}}
         >
-          <View className='addressBox'>
+          <View className='addressBox' onClick={() => this.goAddress()}>
             {
-              address.length && defaultAddress.status === '2' ? (
+              address.length ? (
                 <View className='addressBoxHas'>
                   <View className='address'>
                     <View className='i-top'>
@@ -174,7 +197,7 @@ class Item extends Component {
                   <Image class='addressIcon' src={'https://qiniufile.zhixiangke.com/xcx/templates/shop/open_26.png'}/>
                 </View>
               ) : (
-                <Text>没有地址</Text>
+                <Text>没有地址,点击添加地址</Text>
               )
             }
           </View>
@@ -182,7 +205,7 @@ class Item extends Component {
           <View className='order_box'>
             <View className='order_list'>
               {
-                shop.list.map((item, index) => (
+                shop.list && shop.list.map((item, index) => (
                   <View className='item' key={index}>
                     <View className='Img'>
                       <Image className='cover' src={item.product.cover}/>

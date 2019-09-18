@@ -1,7 +1,6 @@
-import Taro, { Component } from '@tarojs/taro'
-import { View, Image } from '@tarojs/components'
+import Taro, {Component} from '@tarojs/taro'
+import {View, Image} from '@tarojs/components'
 import './index.scss'
-import React from "react";
 
 export default class Banner extends Component {
   static defaultProps = {
@@ -16,8 +15,8 @@ export default class Banner extends Component {
     })
   }
 
-  render () {
-    const { banner, current } = this.props
+  render() {
+    const {banner, current} = this.props
 
     const defaultImg = 'https://qiniufile.zhixiangke.com/5/d/d/515330217005b600e042be3b.jpg';
     return (
@@ -34,8 +33,8 @@ export default class Banner extends Component {
               mode='widthFix'
             />
           </View>
-        ):'')}
-        </View>
+        ) : '')}
+      </View>
     )
   }
 }

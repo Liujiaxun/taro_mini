@@ -31,7 +31,13 @@ class App extends Component {
       'pages/user-login-email/user-login-email',
       'pages/item/item',
       'pages/order/order',
+      'pages/orders/orders',
       'pages/address/address',
+      'pages/about/about',
+      'pages/contact/contact',
+      'pages/pay/index',
+      'pages/help/help',
+      'pages/userinfo/userinfo',
       'pages/webview/webview'
     ],
     window: {

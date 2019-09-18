@@ -1,1 +1,10 @@
 @import '@styles/reset.scss';
+.item {
+  position: relative;
+  overflow: hidden;
+}
+
+.item__wrap {
+  padding-bottom: 100px;
+  background: #fafafa;
+}

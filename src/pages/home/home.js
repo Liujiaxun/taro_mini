@@ -35,14 +35,16 @@ class Home extends Component {
   config = {
     navigationBarTitleText: '网易严选2'
   }
-
-  state = {
-    loaded: false,
-    loading: false,
-    lastItemId: 0,
-    hasMore: true,
-    page:1,
-    stop:false
+  constructor(props){
+    super(props)
+    this.state = {
+      page:1,
+      isStop:false,
+      loaded: false,
+      loading: false,
+      lastItemId: 0,
+      hasMore: true,
+    }
   }
 
   componentDidMount() {
@@ -106,8 +108,10 @@ class Home extends Component {
   }
 
   loadRecommend = () => {
+    const self = this;
     const {page} = this.state;
-    if (!this.state.hasMore || this.state.loading) {
+    if (this.state.isStop) {
+      console.log('到底了');
       return
     }
     this.setState({loading: true})
@@ -115,15 +119,12 @@ class Home extends Component {
       type: 'HOME_YXC_TUI_JIAN', page: page, category_id: 0, pageSize: RECOMMEND_SIZE
     }).then((res) => {
       const {currentPage,numPages} = res.paginator;
-      console.log(currentPage !== numPages);
-      this.setState({
+      const isStop = currentPage === numPages
+      self.setState({
         loading: false,
-        hasMore: currentPage !== numPages ? true : false,
-        lastItemId: currentPage !== numPages ? 0 :  res.list[res.list.length].id,
-        page:currentPage !== numPages ? page+1 : page,
-        stop:currentPage === numPages ? true : false,
+        page:isStop ? page : page+1,
+        isStop:isStop
       })
-
     }).catch(() => {
       this.setState({loading: false})
     })
@@ -141,6 +142,8 @@ class Home extends Component {
     if (!this.state.loaded) {
       return <Loading/>
     }
+    const {} = this.state;
+    console.log(this.state);
     const {homeInfo, searchCount, elements_arr, yxcPin, yxcAllData} = this.props
     //banner
     let banner = [];
@@ -176,7 +179,7 @@ class Home extends Component {
         <ScrollView
           scrollY
           className='home__wrap'
-          onScrollToLower={this.loadRecommend}
+          onScrollToLower={() => this.loadRecommend(this.state.stop)}
           style={{height: getWindowHeight()}}
         >
           <View onClick={this.handlePrevent}>
@@ -219,9 +222,9 @@ class Home extends Component {
             <Text className='home__loading-txt'>正在加载中...</Text>
           </View>
           }
-          { recommend.length > paginator.total  ?
+          { this.state.isStop  ?
             <View className='home__loading home__loading--not-more'>
-              <Text className='home__loading-txt'>更多内容，敬请期待</Text>
+              <Text className='home__loading-txt'>到底了</Text>
             </View> : null
           }
         </ScrollView>

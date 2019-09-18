@@ -17,7 +17,7 @@ export default class Menu extends Component {
     return (
       <View className='cate-menu'>
         {list.map((item) => {
-          const active = item.id === current
+          const active = item.id == current
           return (
             <View
               key={item.id}

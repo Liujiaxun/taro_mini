@@ -15,9 +15,9 @@ export function createAction(options) {
 }
 
 export function createYxcAction(options) {
-  const { url, payload, method, fetchOptions, cb, type } = options
+  const { url, payload, method, fetchOptions, cb, type, isPayload } = options
   return (dispatch) => {
-    return fetch2({ url, payload, method, ...fetchOptions }).then((res) => {
+    return fetch2({ url, payload, method, isPayload, ...fetchOptions }).then((res) => {
       dispatch({ type, payload: cb ? cb(res) : res })
       return res
     })

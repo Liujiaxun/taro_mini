@@ -1,4 +1,4 @@
-import * as Taro from "@tarojs/taro";
+import Taro from "@tarojs/taro";
 
 export async function setAppStore(weapp=null,h5=null,rn=null){
   if(process.env.TARO_ENV === 'weapp'){

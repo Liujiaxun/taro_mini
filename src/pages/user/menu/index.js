@@ -7,6 +7,7 @@ import './index.scss'
 const MENU_LIST = [{
   key: 'order',
   text: '我的订单',
+  url: '/pages/orders/orders',
   img: require('./assets/order.png')
 },
 //   {
@@ -48,6 +49,7 @@ const MENU_LIST = [{
   {
     key: 'gif-card',
     text: '我的资料',
+    url:'/pages/userinfo/userinfo',
     img: require('./assets/gif-card.png')
   },
   {
@@ -64,20 +66,23 @@ const MENU_LIST = [{
 //   key: 'contact',
 //   text: '联系客服',
 //   img: require('./assets/contact.png')
-// }, {
-//   key: 'feedback',
-//   text: '用户反馈',
-//   img: require('./assets/feedback.png')
 // },
+{
+  key: 'feedback',
+  text: '联系我们',
+  url: '/pages/contact/contact',
+  img: require('./assets/feedback.png')
+},
   {
     key: 'allowance',
     text: '关于我们',
+    url:'/pages/about/about',
     img: require('./assets/service.png')
   },
   {
     key: 'help',
     text: '帮助中心',
-    url: 'http://m.you.163.com/help',
+    url: '/pages/help/help',
     img: require('./assets/help.png')
   }]
 const COUNT_LINE = 3
@@ -85,13 +90,9 @@ const COUNT_LINE = 3
 export default class Menu extends Component {
   handleClick = (menu) => {
     // NOTE 时间关系，此处只实现帮助中心，用于演示多端 webview
-    if (menu.key === 'help') {
-      jump({url: menu.url, title: menu.text})
-    } else {
       Taro.navigateTo({
         url: menu.url
       })
-    }
   }
 
   render() {
