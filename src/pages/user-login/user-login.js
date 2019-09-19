@@ -162,28 +162,31 @@ class UserLogin extends Component {
       );
     }
     return (
-      <View className='logins'>
-        <View className='appLogin'>
-          <Image className='logo' src={logo}/>
-        </View>
-        <View className='inputs'>
-          <Input type='text' placeholder='请输入手机号' onChange={val => this.onSetData(val, 'phone')}/>
-        </View>
 
-        <View className='ge'>
+        process.env.TARO_ENV !== 'weapp' && <View className='logins'>
+          <View className='appLogin'>
+            <Image className='logo' src={logo}/>
+          </View>
           <View className='inputs'>
-            <Input type='text' placeholder='请输入验证码' onChange={val => this.onSetData(val, 'authencode')}/>
+            <Input type='text' placeholder='请输入手机号' onChange={val => this.onSetData(val, 'phone')}/>
           </View>
-          <Button className='getCode' disabled={disabled} onClick={() => this.onGetCode()}>获取验证码</Button>
 
+          <View className='ge'>
+            <View className='inputs'>
+              <Input type='text' placeholder='请输入验证码' onChange={val => this.onSetData(val, 'authencode')}/>
+            </View>
+            <Button className='getCode' disabled={disabled} onClick={() => this.onGetCode()}>获取验证码</Button>
+
+          </View>
+
+          <View className='loginBtn'>
+            <View className='login-btn' onClick={() => this.onLogin()}>
+              <Text>登录或注册</Text>
+            </View>
+          </View>
         </View>
 
-        <View className='loginBtn'>
-          <View className='login-btn' onClick={() => this.onLogin()}>
-            <Text>登录或注册</Text>
-          </View>
-        </View>
-      </View>);
+      );
   }
 }
 

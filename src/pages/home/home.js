@@ -33,7 +33,7 @@ const RECOMMEND_SIZE = 20
 })
 class Home extends Component {
   config = {
-    navigationBarTitleText: '网易严选2'
+    navigationBarTitleText: '馨朵'
   }
   constructor(props){
     super(props)

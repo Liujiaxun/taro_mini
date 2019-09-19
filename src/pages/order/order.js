@@ -46,6 +46,7 @@ class Item extends Component {
 
   // type=1&product_id=14149&num=1&sku_id=0&promotion_product_id=0&form_id=the%20formId%20is%20a%20mock%20one&storehouse_id=
   async init() {
+    const self = this;
     let payloadProductInfo = {
       is_group: 1,
       products: [],
@@ -66,15 +67,25 @@ class Item extends Component {
 
     this.props.dispathProductInfo(payloadProductInfo).then(res => {
       this.setState({
-        shop: res
-      })
-    });
-    this.props.dispathGetAddress({pageSize: 100}).then(res => {
-      this.setState({
-        address: res.list,
+        shop: res,
         loaded: true
       })
+    });
+    self.props.dispathGetAddress({pageSize: 100}).then(res => {
+      self.setState({
+        address: res.list,
+      })
     })
+    this.setI = setInterval(() => {
+      self.props.dispathGetAddress({pageSize: 100}).then(res => {
+        self.setState({
+          address: res.list,
+        })
+      })
+    },5000)
+  }
+  componentWillUnmount() {
+    clearInterval(this.setI);
   }
 
   orderCreate = () => {
@@ -172,6 +183,9 @@ class Item extends Component {
     let defaultAddress = address.find(item => item.status === '2') || {};
     if(addressIndex != -1){
       defaultAddress = address[addressIndex]
+    }
+    if(address.length > 0 && !defaultAddress.id){
+      defaultAddress = address[0];
     }
     const height = getWindowHeight(false)
     return (

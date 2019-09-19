@@ -43,7 +43,7 @@ class App extends Component {
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: '网易严选',
+      navigationBarTitleText: '馨朵',
       navigationBarTextStyle: 'black'
     },
     tabBar: {

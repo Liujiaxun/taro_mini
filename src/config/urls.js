@@ -1,5 +1,5 @@
-const yHost = "https://request.hao-a.com/xcx";
-const mHost = "https://api.yixiaocheng.com";
+const yHost = "https://request.gzjunkaiing.com/xcx";
+const mHost = "https://api.gzjunkaiing.com";
 const qHost = "https://request.hao-a.com/quanzi";
 /* eslint-disable */
 export const Apis = {

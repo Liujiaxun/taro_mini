@@ -119,7 +119,7 @@ export async function fetch2(options) {
     newData.api_token=app.api_token
     // newData.api_sign=app.api_secret
   }
-  if(token && token.id && url !== Apis.URL_USER_LOGIN && url !== Apis.URL_PHONEAUTHONECODE_SEND && url !== 'https://request.hao-a.com/xcx/user/applogin'){
+  if(token && token.id && url !== Apis.URL_USER_LOGIN && url !== Apis.URL_PHONEAUTHONECODE_SEND && url !== 'https://request.gzjunkaiing.com/xcx/user/applogin'){
     newData.uid = token.id
   }
   // const header = token ? {'WX-PIN-SESSION': token, 'X-WX-3RD-Session': token} : {}
