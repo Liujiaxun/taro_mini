@@ -145,12 +145,8 @@ class Home extends Component {
     const {} = this.state;
     console.log(this.state);
     const {homeInfo, searchCount, elements_arr, yxcPin, yxcAllData} = this.props
-    //banner
-    let banner = [];
     let yxcPins = [];
-    if (elements_arr && elements_arr[0]) {
-      banner = elements_arr[0].data.list
-    }
+    let banner = elements_arr
     //拼团
     const {list: yxcPinList} = yxcPin
     if (yxcPinList) {

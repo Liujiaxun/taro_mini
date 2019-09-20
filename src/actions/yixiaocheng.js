@@ -29,7 +29,7 @@ export const dispatchLogin = payload => createYxcAction({
 //api1 +  /usertemplatepage/info?
 //获取banner等
 export const dispathUserTemplatePage = payload => createYxcAction({
-  url: api1 + '/usertemplatepage/info',
+  url: api2 + '/slide/list',
   type: 'HOME_YXC_BANNER',
   payload
 })

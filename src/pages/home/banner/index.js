@@ -9,6 +9,7 @@ export default class SwiperBanner extends Component {
 
   render () {
     const { list } = this.props
+    console.log(list,'listlistlist')
     return (
       <View className='home-banner'>
         <Swiper
@@ -28,7 +29,7 @@ export default class SwiperBanner extends Component {
             >
               <Image
                 className='home-banner__swiper-item-img'
-                src={item.src}
+                src={item.image}
               />
             </SwiperItem>
           ))}

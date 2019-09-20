@@ -50,7 +50,7 @@ export default function home(state = INITIAL_STATE, action) {
     case 'HOME_YXC_BANNER': {
       return {
         ...state,
-        elements_arr: action.payload && action.payload.elements_arr?action.payload.elements_arr:[]
+        elements_arr:action.payload || []
       }
     }
     case 'HOME_YXC_PIN_DATA': {
